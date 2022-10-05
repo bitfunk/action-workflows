@@ -10,7 +10,6 @@ This will approve a pull-request when the owner (wmontwe) comments with :+1:
 name: CI - Auto approve
 
 on:
-  workflow_dispatch:
   issue_comment:
     types:
       - created
