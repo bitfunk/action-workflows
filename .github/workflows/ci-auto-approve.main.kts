@@ -55,4 +55,4 @@ val yaml = flow.toYaml()
 
 println(yaml)
 
-File("ci-auto-approve.yaml").writeText(yaml)
+File("ci-auto-approve.yaml").writeText(yaml + "\n")

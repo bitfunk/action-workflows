@@ -46,4 +46,4 @@ val flow = workflow(
 
 println(flow.toYaml())
 
-File("owner-auto-approve.yaml").writeText(flow.toYaml())
+File("owner-auto-approve.yaml").writeText(flow.toYaml()  + "\n")
