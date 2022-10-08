@@ -37,9 +37,8 @@ val flow = workflow(
             "uses" to ownerAutoApproveAction.fullName
         )
     ) {
-        uses(
-            name = "Approve owners review",
-            action = ownerAutoApproveAction
+        run(
+            command = "echo PR approved"
         )
     }
 }

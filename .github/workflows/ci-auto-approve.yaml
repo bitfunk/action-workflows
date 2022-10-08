@@ -24,6 +24,5 @@ jobs:
     - check_yaml_consistency
     steps:
     - id: step-0
-      name: Approve owners review
-      uses: bitfunk/action-workflows/.github/workflows/owner-auto-approve.yaml@main
+      run: echo PR approved
     uses: bitfunk/action-workflows/.github/workflows/owner-auto-approve.yaml@main
