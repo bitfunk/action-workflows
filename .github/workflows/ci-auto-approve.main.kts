@@ -28,7 +28,7 @@ val flow = workflow(
         )),
     ),
     sourceFile = __FILE__.toPath(),
-    yamlConsistencyJobCondition = yamlConsistencyCondition,
+    yamlConsistencyJobCondition = yamlConsistencyConditionNever,
 ) {
     job(
         id = "auto-approve",
@@ -38,11 +38,21 @@ val flow = workflow(
         )
     ) {
         run(
-            command = "echo PR approved"
+            command = "REMOVE ME"
         )
     }
 }
 
-println(flow.toYaml())
+// workaround for not supported uses external job
+val yaml = flow.toYaml()
+    .replace("  auto-approve:\n" +
+            "    runs-on: ubuntu-latest\n" +
+            "    needs:\n" +
+            "    - check_yaml_consistency\n" +
+            "    steps:\n" +
+            "    - id: step-0\n" +
+            "      run: REMOVE ME", "  auto-approve:")
 
-File("ci-auto-approve.yaml").writeText(flow.toYaml())
+println(yaml)
+
+File("ci-auto-approve.yaml").writeText(yaml)
