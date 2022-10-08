@@ -1,6 +1,7 @@
 #!/usr/bin/env kotlin
 
 @file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.28.0")
+@file:Import("_shared.main.kts")
 
 import it.krzeminski.githubactions.actions.CustomAction
 import it.krzeminski.githubactions.domain.RunnerType
@@ -26,6 +27,7 @@ val flow = workflow(
         )),
     ),
     sourceFile = __FILE__.toPath(),
+    yamlConsistencyJobCondition = yamlConsistencyCondition,
 ) {
     job(
         id = "auto-approve",

@@ -10,6 +10,7 @@ on:
 jobs:
   check_yaml_consistency:
     runs-on: ubuntu-latest
+    if: github.repository == 'bitfunk/action-workflows'
     steps:
     - id: step-0
       name: Check out
