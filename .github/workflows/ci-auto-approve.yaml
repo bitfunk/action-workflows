@@ -26,3 +26,4 @@ jobs:
     - id: step-0
       name: Approve owners review
       uses: bitfunk/action-workflows/.github/workflows/owner-auto-approve.yaml@main
+    uses: bitfunk/action-workflows/.github/workflows/owner-auto-approve.yaml@main

@@ -4,6 +4,7 @@
 @file:Import("_shared.main.kts")
 
 import it.krzeminski.githubactions.actions.CustomAction
+import it.krzeminski.githubactions.actions.fullName
 import it.krzeminski.githubactions.domain.RunnerType
 import it.krzeminski.githubactions.domain.triggers.IssueComment
 import it.krzeminski.githubactions.domain.triggers.WorkflowDispatch
@@ -31,7 +32,10 @@ val flow = workflow(
 ) {
     job(
         id = "auto-approve",
-        runsOn = RunnerType.UbuntuLatest
+        runsOn = RunnerType.UbuntuLatest,
+        _customArguments = mapOf(
+            "uses" to ownerAutoApproveAction.fullName
+        )
     ) {
         uses(
             name = "Approve owners review",
