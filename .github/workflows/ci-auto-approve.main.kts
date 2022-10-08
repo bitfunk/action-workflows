@@ -1,8 +1,10 @@
 #!/usr/bin/env kotlin
 
 @file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.28.0")
+@file:Import("_shared.main.kts")
 
 import it.krzeminski.githubactions.actions.CustomAction
+import it.krzeminski.githubactions.actions.fullName
 import it.krzeminski.githubactions.domain.RunnerType
 import it.krzeminski.githubactions.domain.triggers.IssueComment
 import it.krzeminski.githubactions.domain.triggers.WorkflowDispatch
@@ -26,18 +28,31 @@ val flow = workflow(
         )),
     ),
     sourceFile = __FILE__.toPath(),
+    yamlConsistencyJobCondition = yamlConsistencyConditionNever,
 ) {
     job(
         id = "auto-approve",
-        runsOn = RunnerType.UbuntuLatest
+        runsOn = RunnerType.UbuntuLatest,
+        _customArguments = mapOf(
+            "uses" to ownerAutoApproveAction.fullName
+        )
     ) {
-        uses(
-            name = "Approve owners review",
-            action = ownerAutoApproveAction
+        run(
+            command = "REMOVE ME"
         )
     }
 }
 
-println(flow.toYaml())
+// workaround for not supported uses external job
+val yaml = flow.toYaml()
+    .replace("  auto-approve:\n" +
+            "    runs-on: ubuntu-latest\n" +
+            "    needs:\n" +
+            "    - check_yaml_consistency\n" +
+            "    steps:\n" +
+            "    - id: step-0\n" +
+            "      run: REMOVE ME", "  auto-approve:")
 
-File("ci-auto-approve.yaml").writeText(flow.toYaml())
+println(yaml)
+
+File("ci-auto-approve.yaml").writeText(yaml)
