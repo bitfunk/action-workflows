@@ -23,6 +23,6 @@ jobs:
 
 ## Develop
 
-We use [GitHub Actions Kotlin DSL](https://github.com/krzema12/github-actions-kotlin-dsl/) to write our GitHub Action workflows.
+We use [GitHub Actions Kotlin DSL](https://github.com/krzema12/github-workflows-kt) to write our GitHub Action workflows.
 
 Open the Kotlin scripts in IntelliJ IDEA and change them to your needs. Run them once to generate the corresponding yaml representation. Commit and push your changes.
