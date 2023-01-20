@@ -1,6 +1,6 @@
 #!/usr/bin/env kotlin
 
-@file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.33.0")
+@file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.35.0")
 
 val yamlConsistencyCondition = "github.repository == 'bitfunk/action-workflows'"
 val yamlConsistencyConditionNever = "github.repository == 'bitfunk/does-not-exist'"
