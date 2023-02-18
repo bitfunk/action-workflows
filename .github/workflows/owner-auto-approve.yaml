@@ -1,6 +1,6 @@
 # This file was generated using Kotlin DSL (.github/workflows/owner-auto-approve.main.kts).
 # If you want to modify the workflow, please change the Kotlin file and regenerate this YAML file.
-# Generated with https://github.com/krzema12/github-actions-kotlin-dsl
+# Generated with https://github.com/krzema12/github-workflows-kt
 
 name: Owner auto approve
 on:
@@ -8,6 +8,8 @@ on:
 jobs:
   owner-auto-approve:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
     - id: step-0
       name: Approve owners review
@@ -22,7 +24,5 @@ jobs:
               event: 'APPROVE',
               body: 'This is ready to go.'
           })
-      if: github.actor == 'wmontwe' &&  contains(github.event.comment.body, ':+1:')
-    permissions:
-      pull-requests: write
+      if: github.actor == 'wmontwe' &&  contains(github.event.comment.body, 'LGTM')
 

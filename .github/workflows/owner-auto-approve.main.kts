@@ -27,7 +27,7 @@ val flow = workflow(
     ) {
         uses(
             name = "Approve owners review",
-            condition = "github.actor == 'wmontwe' &&  contains(github.event.comment.body, ':+1:')",
+            condition = "github.actor == 'wmontwe' &&  contains(github.event.comment.body, 'LGTM')",
             action = GithubScriptV6(
                 script = """
                     github.rest.pulls.createReview({
