@@ -3,9 +3,8 @@
 @file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.37.0")
 @file:Import("_shared.main.kts")
 
-import it.krzeminski.githubactions.actions.CustomAction
-import it.krzeminski.githubactions.actions.fullName
 import it.krzeminski.githubactions.domain.RunnerType
+import it.krzeminski.githubactions.domain.actions.CustomAction
 import it.krzeminski.githubactions.domain.triggers.IssueComment
 import it.krzeminski.githubactions.domain.triggers.WorkflowDispatch
 import it.krzeminski.githubactions.dsl.workflow
@@ -33,12 +32,9 @@ val flow = workflow(
     job(
         id = "auto-approve",
         runsOn = RunnerType.UbuntuLatest,
-        _customArguments = mapOf(
-            "uses" to ownerAutoApproveAction.fullName
-        )
     ) {
-        run(
-            command = "REMOVE ME"
+        uses(
+            action = ownerAutoApproveAction
         )
     }
 }
