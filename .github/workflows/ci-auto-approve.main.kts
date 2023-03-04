@@ -1,6 +1,6 @@
 #!/usr/bin/env kotlin
 
-@file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.37.0")
+@file:DependsOn("it.krzeminski:github-actions-kotlin-dsl:0.38.0")
 @file:Import("_shared.main.kts")
 
 import it.krzeminski.githubactions.domain.RunnerType
